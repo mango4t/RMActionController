@@ -84,7 +84,7 @@
 - (void)testPresentingFromPushViewController {
     XCUIApplication *app = [[XCUIApplication alloc] init];
     
-    [app.tables.staticTexts[@"Show sample action view controller…"] swipeUp];
+    [app.tables.staticTexts[@"Black Version"] swipeUp];
     [app.tables.staticTexts[@"Push VC"] tap];
     [app.tables.staticTexts[@"Show sample action view controller…"] tap];
     

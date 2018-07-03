@@ -204,4 +204,7 @@ typedef NS_ENUM(NSInteger, RMActionControllerStyle) {
  */
 @property (assign, nonatomic) BOOL disableBlurEffectsForActions;
 
+@property (nullable, nonatomic, copy) void (^cancelCallback) ();
+@property (nullable, nonatomic, copy) UIColor *backgroundViewColor;
+
 @end

@@ -351,13 +351,25 @@
 }
 
 - (void)setupContainerConstraintWithBindings:(NSDictionary *)bindingsDict metrics:(NSDictionary *)metrics {
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(Margin)-[topContainer]-(Margin)-|" options:0 metrics:metrics views:bindingsDict]];
+    if (@available(iOS 11.0, *)) {
+        [[self.topContainer.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:[self marginForCurrentStyle]] setActive:true];
+        [[self.topContainer.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant: - [self marginForCurrentStyle]] setActive:true];
+    } else {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(Margin)-[topContainer]-(Margin)-|" options:0 metrics:metrics views:bindingsDict]];
+    }
+
 
     id item;
     if([self.cancelActions count] <= 0) {
         item = self.topContainer;
     } else {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(Margin)-[bottomContainer]-(Margin)-|" options:0 metrics:metrics views:bindingsDict]];
+        if (@available(iOS 11.0, *)) {
+            [[self.bottomContainer.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:[self marginForCurrentStyle]] setActive:true];
+            [[self.bottomContainer.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant: - [self marginForCurrentStyle]] setActive:true];
+        } else {
+            [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(Margin)-[bottomContainer]-(Margin)-|" options:0 metrics:metrics views:bindingsDict]];
+        }
+
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topContainer]-(Margin)-[bottomContainer]" options:0 metrics:metrics views:bindingsDict]];
 
         item = self.bottomContainer;

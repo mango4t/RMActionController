@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, RMActionStyle) {
  *
  *  If both title and image are given, the title is displayed.
  */
+NS_SWIFT_UI_ACTOR
 @interface RMAction<T : UIView *> : NSObject
 
 /// @name Getting an Instance

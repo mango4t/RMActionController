@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, RMActionControllerStyle) {
  *
  *  Usually, RMActionController is subclassed to display custom content views. See RMDateSelectionViewController and RMPickerViewController on how this works.
  */
+NS_SWIFT_UI_ACTOR
 @interface RMActionController<T : UIView *> : UIViewController <UIAppearanceContainer>
 
 /// @name Getting an Instance
